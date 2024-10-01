@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "CrmGrpcServer";
+
+package greet;
+
+// The greeting service definition.
+service CrmServer {
+  // Sends a greeting
+  rpc AddUser (AddUserRequest) returns (AddUserReply);
+}
+
+// The request message containing the user's name.
+message AddUserRequest {
+  string fullName = 1;
+  int32 age = 2;
+}
+
+// The response message containing the greetings.
+message AddUserReply {
+  bool success = 1;
+}
