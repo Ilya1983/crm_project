@@ -1,0 +1,68 @@
+# Build Folders
+bin/
+obj/
+*.vspscc
+*.vssscc
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.sln.docstates
+
+# Auto-generated files
+*.log
+*.tlog
+*.ide
+
+# Azure Pipelines
+*.coverage
+*.coveragexml
+*.testResults
+TestResults/
+
+# Build results
+*.exe
+*.dll
+*.pdb
+
+# .NET Core-specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+AppPackages/
+TestResults/
+
+# Visual Studio-specific
+.vscode/
+.vs/
+.idea/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper*/
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+*.snupkg
+project.assets.json
+# Uncomment if you have MSBuild targets that require the .props or .targets files:
+#!**/directory.build.props
+#!**/directory.build.targets
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# MacOS
+.DS_Store
+._*
+
+# Linux
+*~
