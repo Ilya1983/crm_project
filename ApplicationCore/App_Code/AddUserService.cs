@@ -12,14 +12,18 @@ using Confluent.Kafka;
 using System.Activities.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service" in code, svc and config file together.
 public class AddUserService : IAddUserService
 {
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    private static extern IntPtr LoadLibrary(string libname);
+
     readonly string connectionString = "mongodb://localhost:27017";
     readonly string databaseName = "db";
     readonly string collectionName = "collection";
-    readonly string kafkaTopic = "added - users";
+    readonly string kafkaTopic = "added-users";
 
 
     private MongoClient mongoClient;
@@ -27,6 +31,7 @@ public class AddUserService : IAddUserService
     private IMongoCollection<BsonDocument> collection = null;
     private bool mongoReconnect = true;
     private object mongoLocker = new object();
+    private bool loadRequired = true;
 
     private ProducerConfig kafkaConfig = new ProducerConfig
     {
@@ -70,6 +75,12 @@ public class AddUserService : IAddUserService
 
     private IProducer<Null, string> GetKafkaProducer()
     {
+        /*if(loadRequired)
+        {
+            string dllPath = @"C:\UtopiaProject\ApplicationCore\bin\librdkafka.dll";
+            IntPtr handle = LoadLibrary(dllPath);
+            loadRequired = false;
+        }*/
         if(kafkaReconnect || kafkaProducer == null)
         {
             lock (kafkaLocker)
